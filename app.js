@@ -19,6 +19,9 @@
   ];
   let config = leer(K_CONFIG, null);
   const defectosConfig = () => (config && config.defectos) || DEFECTOS;
+  // Si el vendedor nunca guardó una localidad, se usa la de por defecto; si la dejó vacía a propósito, se respeta.
+  const LOCALIDAD = 'San Miguel de Tucumán - Tucumán';
+  const localidadConfig = () => (config && config.localidad !== undefined ? config.localidad : LOCALIDAD);
   let tipo = 'auto';
   let ultima = null; // última garantía generada, para compartir
 
@@ -43,6 +46,7 @@
     $('#c-nombre').value = c.nombre || '';
     $('#c-telefono').value = c.telefono || '';
     $('#c-direccion').value = c.direccion || '';
+    $('#c-localidad').value = localidadConfig();
     $('#c-defectos').innerHTML = '';
     defectosConfig().forEach(agregarDefectoEditable);
     logoTmp = c.logo || null;
@@ -92,7 +96,7 @@
     $('#c-telefono').classList.toggle('invalido', !telefono);
     if (!nombre || !telefono) return;
     const defectos = [...document.querySelectorAll('#c-defectos input')].map((i) => i.value.trim()).filter(Boolean);
-    const nuevo = { nombre, telefono, direccion: $('#c-direccion').value.trim(), logo: logoTmp, defectos };
+    const nuevo = { nombre, telefono, direccion: $('#c-direccion').value.trim(), localidad: $('#c-localidad').value.trim(), logo: logoTmp, defectos };
     if (guardar(K_CONFIG, nuevo)) { config = nuevo; pintarDefectos(); mostrar('nueva'); }
   });
 
@@ -186,7 +190,7 @@
 
   // ---------- PDF y compartir ----------
   async function compartir(g) {
-    const doc = GarantiaPdf.construirPdf(window.jspdf.jsPDF, config, g);
+    const doc = GarantiaPdf.construirPdf(window.jspdf.jsPDF, Object.assign({}, config, { localidad: localidadConfig() }), g);
     const nombre = GarantiaPdf.nombreArchivo(g);
     const blob = doc.output('blob');
     const file = new File([blob], nombre, { type: 'application/pdf' });

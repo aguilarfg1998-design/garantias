@@ -49,10 +49,16 @@
     doc.setTextColor(20);
     doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
     doc.text(config.nombre || '', xDatos, y + 7);
+    let yd = y + 14.5;
+    // Teléfono destacado: grande, en negrita y en verde
+    if (config.telefono) {
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(15); doc.setTextColor(21, 128, 61);
+      doc.text('Tel.: ' + config.telefono, xDatos, yd); yd += 6;
+      doc.setTextColor(20);
+    }
     doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
-    let yd = y + 13;
-    if (config.telefono) { doc.text('Tel.: ' + config.telefono, xDatos, yd); yd += 5; }
-    if (config.direccion) { doc.text(doc.splitTextToSize(config.direccion, W - M - xDatos), xDatos, yd); }
+    if (config.localidad) { doc.text(config.localidad, xDatos, yd); yd += 5; }
+    if (config.direccion) { doc.text(doc.splitTextToSize(config.direccion, W - M - xDatos)[0], xDatos, yd); }
     y += 30;
     doc.setDrawColor(40); doc.setLineWidth(0.6); doc.line(M, y, W - M, y);
 

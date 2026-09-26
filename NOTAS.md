@@ -23,3 +23,7 @@
 - Sin selector de rueda (decisión del usuario): la posición va en el texto libre.
 - Probado localmente con Chrome automatizado (editar/borrar/agregar, renglón vacío ignorado, persistencia, tildes limpios en la garantía siguiente) y el PDF generado en Node.
 - Pendiente: texto de condiciones (el usuario lo pidió ver; decisiones abiertas: quién evalúa el reclamo, bonificación proporcional, mano de obra).
+
+## 2026-09-26 12:45 — Localidad por defecto y teléfono destacado
+- Nuevo campo "Localidad" en Mis datos, por defecto "San Miguel de Tucumán - Tucumán" (también para vendedores ya configurados; si la vacían a propósito, se respeta).
+- Encabezado del PDF: nombre → Tel. (15 pt, negrita, verde) → localidad → dirección (1 renglón).
