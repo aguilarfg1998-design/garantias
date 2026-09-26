@@ -30,4 +30,4 @@
 
 ## 2026-09-26 13:00 — Condiciones: procedimiento de reclamo
 - Agregado a la letra chica: el cliente deja el neumático en el local para una revisión más precisa; de ser necesario se envía a garantía a la sucursal Buenos Aires (plazo estimado de 3 a 5 días hábiles); bonificación proporcional al desgaste de la cubierta al momento del reclamo.
-- Sigue abierto: si la garantía cubre la mano de obra.
+- (resuelto 13:10) Los 3-5 días hábiles son para la respuesta de la sucursal; la garantía NO cubre mano de obra (colocación, balanceo, alineación u otros servicios). Condiciones cerradas por ahora.
