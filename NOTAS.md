@@ -27,3 +27,7 @@
 ## 2026-09-26 12:45 — Localidad por defecto y teléfono destacado
 - Nuevo campo "Localidad" en Mis datos, por defecto "San Miguel de Tucumán - Tucumán" (también para vendedores ya configurados; si la vacían a propósito, se respeta).
 - Encabezado del PDF: nombre → Tel. (15 pt, negrita, verde) → localidad → dirección (1 renglón).
+
+## 2026-09-26 13:00 — Condiciones: procedimiento de reclamo
+- Agregado a la letra chica: el cliente deja el neumático en el local para una revisión más precisa; de ser necesario se envía a garantía a la sucursal Buenos Aires (plazo estimado de 3 a 5 días hábiles); bonificación proporcional al desgaste de la cubierta al momento del reclamo.
+- Sigue abierto: si la garantía cubre la mano de obra.

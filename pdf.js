@@ -7,8 +7,10 @@
     'falta de balanceo, suspensión, dirección o frenos en mal estado; uso con presión de inflado incorrecta, ' +
     'sobrecarga o exceso de velocidad; reparaciones o intervenciones realizadas por terceros; uso en competición ' +
     'o distinto al previsto para el vehículo. Para hacer efectiva la garantía deberá presentarse este certificado ' +
-    'junto con el neumático. El vendedor evaluará el neumático y, de corresponder, reconocerá su reposición o una ' +
-    'bonificación proporcional al desgaste. Las observaciones consignadas al momento de la venta forman parte de ' +
+    'junto con el neumático, que el cliente deberá dejar en el local para una revisión más precisa. De ser ' +
+    'necesario, el neumático será enviado a garantía a la sucursal Buenos Aires, con un plazo estimado de 3 a 5 ' +
+    'días hábiles. De corresponder, se reconocerá su reposición o una bonificación proporcional al desgaste que ' +
+    'presente la cubierta al momento de realizar el reclamo. Las observaciones consignadas al momento de la venta forman parte de ' +
     'este certificado y los defectos allí indicados quedan excluidos de la garantía.';
 
   function fecha(iso) {
