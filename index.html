@@ -43,6 +43,13 @@
   .ok { text-align:center; }
   .ok .grande { font-size:40px; }
   .vacio { color:var(--sub); text-align:center; padding:20px 0; }
+  .chips { display:flex; flex-direction:column; gap:8px; }
+  .chips label { display:flex; align-items:center; gap:10px; margin:0; padding:11px 12px; border:1px solid var(--borde); border-radius:8px; font-size:16px; color:var(--txt); }
+  .chips input { width:22px; height:22px; flex:none; accent-color:var(--pri); }
+  .chips label:has(input:checked) { background:#fff3cd; border-color:#c89600; }
+  .editables { display:flex; flex-direction:column; gap:8px; }
+  .editables div { display:flex; gap:8px; }
+  .editables button { flex:none; width:46px; border:1px solid var(--borde); border-radius:8px; background:#fff; color:var(--err); font-size:18px; }
   .oculto { display:none !important; }
 </style>
 </head>
@@ -65,6 +72,9 @@
       <img id="c-logo-prev" class="logo-prev oculto" alt="Logo">
       <input id="c-logo" type="file" accept="image/*">
       <button id="c-quitar-logo" class="btn sec chico oculto" style="margin-top:8px">Quitar logo</button>
+      <label>Defectos frecuentes para tildar en observaciones</label>
+      <div id="c-defectos" class="editables"></div>
+      <button id="c-agregar-defecto" type="button" class="btn sec chico" style="margin-top:8px">+ Agregar defecto</button>
       <button id="c-guardar" class="btn" style="margin-top:16px">Guardar</button>
     </div>
   </section>
@@ -127,7 +137,9 @@
 
       <div class="card">
         <h2>Observaciones <span class="opc">(opcional)</span></h2>
-        <textarea name="observaciones" placeholder="Ej.: llanta delantera derecha golpeada; desgaste irregular por mala alineación."></textarea>
+        <div id="defectos" class="chips"></div>
+        <label>Detalles / otros</label>
+        <textarea name="observaciones" placeholder="Ej.: delantera derecha."></textarea>
       </div>
 
       <button class="btn" type="submit">Generar garantía</button>

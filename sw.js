@@ -1,5 +1,5 @@
 // Guarda la app en el teléfono para que funcione sin internet.
-const CACHE = 'garantias-v2';
+const CACHE = 'garantias-v3';
 const ARCHIVOS = ['./', 'index.html', 'app.js', 'pdf.js', 'vendor/jspdf.umd.min.js', 'manifest.webmanifest', 'icon.svg'];
 
 self.addEventListener('install', (e) => {

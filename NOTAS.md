@@ -16,3 +16,10 @@
 - APK: "en un futuro cercano"; envolver esta misma web con Capacitor.
 
 **Archivos:** index.html (UI), app.js (lógica), pdf.js (PDF, también probado en Node), sw.js (offline), vendor/jspdf 2.5.1.
+
+## 2026-09-26 12:20 — Observaciones con defectos para tildar
+- En la carga, las observaciones son una lista de defectos para tildar, más el texto libre "Detalles / otros". En el PDF salen solo los tildados (con viñeta) y el texto libre; si no hay nada, dice "Sin observaciones.".
+- Cada vendedor edita la lista en "Mis datos" (agregar, editar, eliminar con ✕); se guarda en config.defectos. Lista inicial: llanta con deformaciones/golpes, desgaste irregular por mala alineación, tren delantero con desperfectos, amortiguadores en mal estado, vibración/falta de balanceo, neumáticos no reemplazados con desgaste.
+- Sin selector de rueda (decisión del usuario): la posición va en el texto libre.
+- Probado localmente con Chrome automatizado (editar/borrar/agregar, renglón vacío ignorado, persistencia, tildes limpios en la garantía siguiente) y el PDF generado en Node.
+- Pendiente: texto de condiciones (el usuario lo pidió ver; decisiones abiertas: quién evalúa el reclamo, bonificación proporcional, mano de obra).

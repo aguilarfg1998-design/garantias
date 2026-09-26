@@ -101,9 +101,12 @@
     seccion('VEHÍCULO', filasVeh);
 
     // Observaciones, destacadas
-    const obs = (g.observaciones || '').trim() || 'Sin observaciones.';
     doc.setFontSize(10);
-    const lineas = doc.splitTextToSize(obs, ancho - 6);
+    let lineas = [];
+    (g.defectos || []).forEach((d) => { lineas = lineas.concat(doc.splitTextToSize('• ' + d, ancho - 6)); });
+    const libre = (g.observaciones || '').trim();
+    if (libre) lineas = lineas.concat(doc.splitTextToSize(libre, ancho - 6));
+    if (!lineas.length) lineas = ['Sin observaciones.'];
     const hObs = 8 + lineas.length * 5 + 3;
     doc.setFillColor(255, 243, 205); doc.rect(M, y, ancho, hObs, 'F');
     doc.setDrawColor(200, 150, 0); doc.setLineWidth(0.5); doc.rect(M, y, ancho, hObs);

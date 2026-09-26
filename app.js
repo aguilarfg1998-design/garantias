@@ -9,7 +9,16 @@
     catch (e) { alert('No se pudo guardar en el teléfono (¿memoria llena?).'); return false; }
   }
 
+  const DEFECTOS = [
+    'Llanta con deformaciones / golpes',
+    'Desgaste irregular por mala alineación',
+    'Tren delantero con desperfectos',
+    'Amortiguadores en mal estado',
+    'Vibración / falta de balanceo',
+    'Neumáticos no reemplazados con desgaste',
+  ];
   let config = leer(K_CONFIG, null);
+  const defectosConfig = () => (config && config.defectos) || DEFECTOS;
   let tipo = 'auto';
   let ultima = null; // última garantía generada, para compartir
 
@@ -34,6 +43,8 @@
     $('#c-nombre').value = c.nombre || '';
     $('#c-telefono').value = c.telefono || '';
     $('#c-direccion').value = c.direccion || '';
+    $('#c-defectos').innerHTML = '';
+    defectosConfig().forEach(agregarDefectoEditable);
     logoTmp = c.logo || null;
     pintarLogo();
   }
@@ -61,17 +72,43 @@
     img.src = URL.createObjectURL(f);
   });
   $('#c-quitar-logo').addEventListener('click', () => { logoTmp = null; pintarLogo(); });
+
+  // Lista editable de defectos: cada renglón se puede editar o borrar con ✕.
+  function agregarDefectoEditable(texto) {
+    const fila = document.createElement('div');
+    const i = document.createElement('input');
+    i.value = texto || ''; i.placeholder = 'Nuevo defecto';
+    const x = document.createElement('button');
+    x.type = 'button'; x.textContent = '✕'; x.title = 'Eliminar';
+    x.addEventListener('click', () => fila.remove());
+    fila.append(i, x);
+    $('#c-defectos').appendChild(fila);
+    return i;
+  }
+  $('#c-agregar-defecto').addEventListener('click', () => agregarDefectoEditable('').focus());
   $('#c-guardar').addEventListener('click', () => {
     const nombre = $('#c-nombre').value.trim(), telefono = $('#c-telefono').value.trim();
     $('#c-nombre').classList.toggle('invalido', !nombre);
     $('#c-telefono').classList.toggle('invalido', !telefono);
     if (!nombre || !telefono) return;
-    const nuevo = { nombre, telefono, direccion: $('#c-direccion').value.trim(), logo: logoTmp };
-    if (guardar(K_CONFIG, nuevo)) { config = nuevo; mostrar('nueva'); }
+    const defectos = [...document.querySelectorAll('#c-defectos input')].map((i) => i.value.trim()).filter(Boolean);
+    const nuevo = { nombre, telefono, direccion: $('#c-direccion').value.trim(), logo: logoTmp, defectos };
+    if (guardar(K_CONFIG, nuevo)) { config = nuevo; pintarDefectos(); mostrar('nueva'); }
   });
 
   // ---------- Formulario ----------
   const f = $('#f');
+  function pintarDefectos() {
+    const cont = $('#defectos');
+    cont.innerHTML = '';
+    defectosConfig().forEach((d) => {
+      const l = document.createElement('label');
+      const i = document.createElement('input');
+      i.type = 'checkbox'; i.value = d;
+      l.append(i, document.createTextNode(d));
+      cont.appendChild(l);
+    });
+  }
   $('#tipo').addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;
     tipo = b.dataset.v;
@@ -131,6 +168,7 @@
       modelo: cap(f.modelo.value),
       anio: f.anio.value.trim(),
       dominio: f.dominio.value.replace(/\s/g, '').toUpperCase(),
+      defectos: [...document.querySelectorAll('#defectos input:checked')].map((i) => i.value),
       observaciones: f.observaciones.value.trim(),
     });
     hist.unshift(g);
@@ -193,5 +231,6 @@
 
   // ---------- Inicio ----------
   if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js');
+  pintarDefectos();
   mostrar(config ? 'nueva' : 'config');
 })();
